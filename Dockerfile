@@ -1,14 +1,22 @@
 # Start with PHP 7.2
 FROM quay.io/pantheon-public/build-tools-ci:1.x
+# parent
 # https://github.com/pantheon-systems/docker-build-tools-ci/blob/master/Dockerfile
+# grandparent
+# https://github.com/drupal-docker/php/blob/2.x/7.2/Dockerfile-cli
 
 # Update
 RUN apt-get update 
 
 # Install node
+# RUN \
+# 	echo -e "\nInstalling node..." && \
+# 	apt-get install -y nodejs npm
+# Using Ubuntu
 RUN \
 	echo -e "\nInstalling node..." && \
-	apt-get install -y nodejs npm
+  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - \
+  sudo apt-get install -y nodejs
 
 # Install backstopjs
 # https://github.com/garris/BackstopJS/blob/master/docker/Dockerfile

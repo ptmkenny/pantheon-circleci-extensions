@@ -6,8 +6,9 @@ FROM quay.io/pantheon-public/build-tools-ci:1.x
 # https://github.com/drupal-docker/php/blob/2.x/7.2/Dockerfile-cli
 
 # wget is needed to use cut-and-pasted backstopjs dockerfile below
+# jq is needed for lighthouse
 RUN apt-get update && \
-	apt-get install -y wget
+	apt-get install -y wget jq
 
 # Install nodejs from nodesource, lock to version 8
 # https://github.com/nodesource/distributions/blob/master/README.md
@@ -23,9 +24,10 @@ RUN \
   echo -e "\nInstalling lighthouse..." && \
   npm install -g lighthouse
 
+# minimist is used for backstop tests to generate js config arguments
 RUN \
-  echo -e "\nInstalling lighthouse..." && \
-  npm install -g lighthouse
+  echo -e "\nInstalling minimist.." && \
+  npm install -g minimist
 
 
 # Install backstopjs

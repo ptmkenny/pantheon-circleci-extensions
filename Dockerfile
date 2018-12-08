@@ -2,6 +2,9 @@
 FROM quay.io/pantheon-public/build-tools-ci:1.x
 # https://github.com/pantheon-systems/docker-build-tools-ci/blob/master/Dockerfile
 
+# Update
+RUN apt-get update 
+
 # Install ssh
 RUN \
 	echo -e "\nInstalling node..." && \

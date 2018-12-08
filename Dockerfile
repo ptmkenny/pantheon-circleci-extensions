@@ -19,6 +19,15 @@ RUN \
   echo -e "\nInstalling nodejs from nodesource..." && \
   sudo apt-get install nodejs
 
+RUN \
+  echo -e "\nInstalling lighthouse..." && \
+  npm install -g lighthouse
+
+RUN \
+  echo -e "\nInstalling lighthouse..." && \
+  npm install -g lighthouse
+
+
 # Install backstopjs
 # cut and pasted from below with directory change, see comment
 # https://github.com/garris/BackstopJS/blob/master/docker/Dockerfile

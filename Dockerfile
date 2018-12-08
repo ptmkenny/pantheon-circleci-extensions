@@ -19,6 +19,12 @@ RUN \
   echo -e "\nInstalling nodejs from nodesource..." && \
   sudo apt-get install nodejs
 
+# minimist is needed for backstop-settings.js
+# https://fivemilemedia.co.uk/blog/backstopjs-javascript-configuration
+RUN \
+  echo -e "\nnpm install minimist.." && \
+  npm install -g minimist
+
 # Install backstopjs
 # cut and pasted from below with directory change, see comment
 # https://github.com/garris/BackstopJS/blob/master/docker/Dockerfile

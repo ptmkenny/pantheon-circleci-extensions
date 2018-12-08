@@ -24,6 +24,12 @@ RUN \
   echo -e "\nInstalling lighthouse..." && \
   npm install -g lighthouse
 
+# https://www.npmjs.com/package/lighthouse-batch
+RUN \
+  echo -e "\nInstalling lighthouse-batch..." && \
+  npm install -g lighthouse-batch
+
+
 
 # Install backstopjs
 # cut and pasted from below with directory change, see comment

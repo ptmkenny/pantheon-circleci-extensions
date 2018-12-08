@@ -24,11 +24,6 @@ RUN \
   echo -e "\nInstalling lighthouse..." && \
   npm install -g lighthouse
 
-# minimist is used for backstop tests to generate js config arguments
-RUN \
-  echo -e "\nInstalling minimist.." && \
-  npm install -g minimist
-
 
 # Install backstopjs
 # cut and pasted from below with directory change, see comment

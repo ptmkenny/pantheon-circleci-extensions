@@ -8,7 +8,7 @@ RUN apt-get update
 # Install node
 RUN \
 	echo -e "\nInstalling node..." && \
-	apt-get install -y node
+	apt-get install -y nodejs npm
 
 # Install backstopjs
 # https://github.com/garris/BackstopJS/blob/master/docker/Dockerfile

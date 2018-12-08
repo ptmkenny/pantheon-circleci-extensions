@@ -5,20 +5,22 @@ FROM quay.io/pantheon-public/build-tools-ci:1.x
 # grandparent
 # https://github.com/drupal-docker/php/blob/2.x/7.2/Dockerfile-cli
 
-# Update
-RUN apt-get update 
+# wget is needed to use cut-and-pasted backstopjs dockerfile below
+RUN apt-get update && \
+	apt-get install -y wget
 
-# Install node
-# RUN \
-# 	echo -e "\nInstalling node..." && \
-# 	apt-get install -y nodejs npm
-# Using Ubuntu
+# Install nodejs from nodesource, lock to version 8
+# https://github.com/nodesource/distributions/blob/master/README.md
 RUN \
-	echo -e "\nInstalling node..." && \
-  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - \
-  sudo apt-get install -y nodejs
+ 	echo -e "\nEasy install from nodesource..." && \
+  curl -sL https://deb.nodesource.com/setup_8.x | bash -
+
+RUN \
+  echo -e "\nInstalling nodejs from nodesource..." && \
+  sudo apt-get install nodejs
 
 # Install backstopjs
+# cut and pasted from below with directory change, see comment
 # https://github.com/garris/BackstopJS/blob/master/docker/Dockerfile
 
 ARG BACKSTOPJS_VERSION

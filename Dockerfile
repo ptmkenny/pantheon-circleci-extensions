@@ -7,8 +7,10 @@ FROM quay.io/pantheon-public/build-tools-ci:1.x
 
 # wget is needed to use cut-and-pasted backstopjs dockerfile below
 # jq is needed for lighthouse
+# imagemagick is needed for behat screenshots with bex (all steps in failed scenarios)
+# apt-utils is needed so docker hub doesn't whine
 RUN apt-get update && \
-	apt-get install -y wget jq
+	apt-get install -y wget jq imagemagick apt-utils
 
 # Install nodejs from nodesource, lock to version 8
 # https://github.com/nodesource/distributions/blob/master/README.md
@@ -19,10 +21,6 @@ RUN \
 RUN \
   echo -e "\nInstalling nodejs from nodesource..." && \
   sudo apt-get install nodejs
-
-RUN \
-  echo -e "\nInstalling imagemagick for "failed_scenario" screenshot option in behat test..." && \
-  sudo apt-get install imagemagick
 
 RUN \
   echo -e "\nInstalling lighthouse..." && \

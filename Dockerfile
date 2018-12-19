@@ -53,10 +53,10 @@ RUN export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" 
 
 # wget is needed to use cut-and-pasted backstopjs dockerfile below
 # jq is needed for lighthouse
-# imagemagick is needed for behat screenshots with bex (all steps in failed scenarios)
+# gnupg is used to install nodesource
 # apt-utils is needed so docker hub doesn't whine
 RUN apt-get update && \
-	apt-get install -y wget jq apt-utils
+	apt-get install -y wget jq apt-utils gnupg
 
 # Install nodejs from nodesource, lock to version 8
 # https://github.com/nodesource/distributions/blob/master/README.md

@@ -21,6 +21,10 @@ RUN \
   sudo apt-get install nodejs
 
 RUN \
+  echo -e "\nInstalling imagemagick for "failed_scenario" screenshot option in behat test..." && \
+  sudo apt-get install imagemagick
+
+RUN \
   echo -e "\nInstalling lighthouse..." && \
   npm install -g lighthouse
 

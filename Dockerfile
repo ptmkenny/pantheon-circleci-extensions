@@ -41,12 +41,22 @@ RUN composer -n create-project -d /usr/local/share/terminus-plugins pantheon-sys
 
 ## END PANTHEON OVERRIDE ##
 
+# Set up imagemagick
+# https://github.com/docker-library/php/issues/105#issuecomment-348296120
+RUN export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libmagickwand-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && pecl install imagick-3.4.3 \
+    && docker-php-ext-enable imagick
+
 # wget is needed to use cut-and-pasted backstopjs dockerfile below
 # jq is needed for lighthouse
 # imagemagick is needed for behat screenshots with bex (all steps in failed scenarios)
 # apt-utils is needed so docker hub doesn't whine
 RUN apt-get update && \
-	apt-get install -y wget jq imagemagick apt-utils
+	apt-get install -y wget jq apt-utils
 
 # Install nodejs from nodesource, lock to version 8
 # https://github.com/nodesource/distributions/blob/master/README.md

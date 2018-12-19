@@ -66,7 +66,7 @@ RUN \
 
 RUN \
   echo -e "\nInstalling nodejs from nodesource..." && \
-  sudo apt-get install nodejs
+  apt-get install nodejs -y
 
 RUN \
   echo -e "\nInstalling lighthouse..." && \

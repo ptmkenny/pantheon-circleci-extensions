@@ -55,9 +55,8 @@ RUN export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" 
 # jq is needed for lighthouse
 # gnupg is used to install nodesource
 # apt-utils is needed so docker hub doesn't whine
-# software-properties-common is needed for backstopjs
 RUN apt-get update && \
-	apt-get install -y wget jq apt-utils gnupg software-properties-common
+	apt-get install -y wget jq apt-utils gnupg
 
 # Install nodejs from nodesource, lock to version 8
 # https://github.com/nodesource/distributions/blob/master/README.md
@@ -97,7 +96,8 @@ ENV \
 
 # Base packages
 RUN apt-get update && \
-	apt-get install -y git sudo software-properties-common python-software-properties
+	apt-get install -y git sudo software-properties-common
+# python-software-properties is removed because it is included in software-properties-common
 
 RUN sudo npm install -g --unsafe-perm=true --allow-root phantomjs@${PHANTOMJS_VERSION}
 RUN sudo npm install -g --unsafe-perm=true --allow-root casperjs@${CASPERJS_VERSION}
